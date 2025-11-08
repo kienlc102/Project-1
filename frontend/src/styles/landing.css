@@ -1,0 +1,9 @@
+.landing-text p {
+  /* Increase vertical spacing between paragraphs in landing text */
+  margin-bottom: 1.5rem;
+}
+
+/* Optional: slightly increase line-height for readability */
+.landing-text p, .landing-text h1 {
+  line-height: 1.4;
+}
