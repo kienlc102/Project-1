@@ -1,21 +1,25 @@
 import React from "react";
 import "../styles/globalStyle.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
 
 const Header = () => {
+    const navigate = useNavigate();
+
     const handleCheckin = () => {
         console.log("Checkin clicked");
-        // TODO: implement checkin logic or navigate to checkin page
+        toast.success("Đang chuyển đến trang Checkin...");
+        setTimeout(() => {navigate("/checkin");}, 1500);
     };
 
     const handleCheckout = () => {
         console.log("Checkout clicked");
-        // TODO: implement checkout logic or navigate to checkout page
+        navigate("/checkout");
     };
 
     const handleAddPerson = () => {
         console.log("Thêm người mới clicked");
-        // TODO: open modal / navigate to add-person page
+        navigate("/add-person");
     };
 
     return (
