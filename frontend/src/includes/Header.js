@@ -9,7 +9,7 @@ const Header = () => {
     const handleCheckin = () => {
         console.log("Checkin clicked");
         toast.success("Đang chuyển đến trang Checkin...");
-        setTimeout(() => {navigate("/checkin");}, 1500);
+        setTimeout(() => {navigate("/checkin");}, 0);
     };
 
     const handleCheckout = () => {

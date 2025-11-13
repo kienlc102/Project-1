@@ -1,7 +1,7 @@
 import { data } from "react-router-dom";
 import axios from "./axiosCustomize";
 
-const getCheckinAll = (userId, time) => {
+const getCheckinAll = () => {
 
   return axios.get("/api/checkins", );
 }
@@ -10,4 +10,12 @@ const getCheckinByUser = (userId) => {
   return axios.get(`/api/checkins/${userId}`);
 }
 
-export { getCheckinAll, getCheckinByUser };
+const getCheckoutAll = () => {
+  return axios.get("/api/checkouts", );
+}
+
+const getCheckoutByUser = (userId) => {
+  return axios.get(`/api/checkouts/${userId}`);
+}
+
+export { getCheckinAll, getCheckinByUser, getCheckoutAll, getCheckoutByUser };
