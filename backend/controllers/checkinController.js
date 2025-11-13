@@ -1,24 +1,19 @@
-const db = require('../db');
+import { handleGetCheckinByUser, handleGetCheckinsAll } from "../services/checkinServices.js";
 
-exports.getAllCheckins = async (req, res) => {
-  try {
-    const [rows] = await db.query('SELECT * FROM checkin');
-    res.json(rows);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
+const getAllCheckins = async (req, res) => {
+  const result = await handleGetCheckinsAll()
+  res.status(200).json({result: result})
+}
 
-exports.createCheckin = async (req, res) => {
+const getCheckinsByUser = async (req, res) => {
+  const {userId} = req.params
   try {
-    const { userId, time } = req.body;
-    const [result] = await db.query(
-      'INSERT INTO checkin (userId, time) VALUES (?, ?)',
-      [userId, time]
-    );
-    res.json({ CheckinId: result.insertId, userId, time });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  const result = await handleGetCheckinByUser(Number(userId))
+  res.status(200).json({result: result})
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-};
+}
+
+export { getAllCheckins, getCheckinsByUser };
 
