@@ -1,6 +1,6 @@
 import express from 'express';
-import { getAllCheckins, getCheckinsByUser } from "../controllers/checkinController.js";
-import { getAllCheckouts, getCheckoutsByUser } from "../controllers/checkoutController.js";
+import { getAllCheckins, getCheckinsByUser, postCheckin } from "../controllers/checkinController.js";
+import { getAllCheckouts, getCheckoutsByUser, postCheckout } from "../controllers/checkoutController.js";
 
 const router = express.Router();
 
@@ -11,7 +11,12 @@ const webRouter = (app) => {
   router.get('/checkouts', getAllCheckouts);
   router.get('/checkouts/:userId', getCheckoutsByUser);
 
-    app.use('/api', router);
+  router.post('/checkins/post/:userId', postCheckin);
+  router.post('/checkouts/post/:userId', postCheckout);
+
+  
+
+  app.use('/api', router);
 };
 
 export default webRouter;

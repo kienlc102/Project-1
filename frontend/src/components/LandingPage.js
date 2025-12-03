@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../includes/Header";
 import "../styles/landing.css";
+import CameraView from "./CameraView";
 
 const LandingPage = () => {
   return (
@@ -23,6 +24,8 @@ const LandingPage = () => {
           Project 1: Hệ thống camera checkin checkout dùng nhận dụng khuôn mặt
         </h1>
         <p>Được thực hiện bởi: Ngô Chí Kiên - 20235355</p>
+        
+        {/* Thẻ p này chỉ được chứa text và thẻ a, KHÔNG ĐƯỢC chứa CameraView */}
         <p>
           Link github project:{" "}
           <a
@@ -35,6 +38,10 @@ const LandingPage = () => {
           </a>
         </p>
       </div>
+
+      {/* CameraView phải nằm RA NGOÀI thẻ div landing-text hoặc ít nhất là ra ngoài thẻ p */}
+      <CameraView />
+      
     </div>
   );
 };
