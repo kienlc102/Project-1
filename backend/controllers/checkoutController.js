@@ -23,18 +23,13 @@ const postCheckout = async (req, res) => {
   }
 
   try {
-    // 1. Kiểm tra xem hôm nay đã check-in chưa bằng hàm mới tối ưu hơn
     const existingCheckout = await handleGetCheckoutToday(Number(userId));
-
-    // 2. Nếu đã tồn tại dữ liệu -> Chặn lại
     if (existingCheckout) {
-      return res.status(200).json({ // Hoặc 409 Conflict tuỳ bạn
+      return res.status(200).json({
         message: "Already checked out today",
-        checkinInfo: existingCheckout // Trả về thông tin lần check-in đó nếu cần
+        checkinInfo: existingCheckout
       });
     }
-
-    // 3. Nếu chưa -> Thực hiện check-in
     const result = await handlePostCheckout(userId);
     res.status(200).json({ 
         message: "Check-out successful", 

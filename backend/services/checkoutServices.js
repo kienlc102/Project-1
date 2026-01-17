@@ -36,11 +36,8 @@ const handlePostCheckout = async (userId) => {
     const connection = await getConnection();
     try {
         const query = "INSERT INTO `checkout` (`userId`, `time`) VALUES (?, ?)";
-        const currentTime = new Date(); // Lấy thời gian hiện tại của server
-
+        const currentTime = new Date(); 
         const [result] = await connection.execute(query, [userId, currentTime]);
-        
-        // result sẽ chứa thông tin như { insertId: ..., affectedRows: 1 }
         return result;
     } catch (error) {
         console.error("Error creating check-out:", error);
@@ -53,17 +50,12 @@ const handlePostCheckout = async (userId) => {
 const handleGetCheckoutToday = async (userId) => {
     const connection = await getConnection();
     try {
-        // CURDATE() lấy ngày hiện tại của SQL
-        // DATE(time) cắt bỏ phần giờ phút giây, chỉ lấy ngày để so sánh
         const query = "SELECT * FROM `checkout` WHERE `userId` = ? AND DATE(`time`) = CURDATE()";
-        
         const [result] = await connection.execute(query, [userId]);
-        
-        // Trả về phần tử đầu tiên nếu tìm thấy, hoặc undefined nếu chưa checkin
         return result[0]; 
     } catch (error) {
         console.error("Error checking today checkout:", error);
-        throw error; // Ném lỗi để controller bắt
+        throw error;
     } finally {
         await connection.end();
     }
